@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1280px; height:720px; overflow:hidden; background:#04060a; }
+  .stage {
+    position:relative; width:1280px; height:720px;
+    background:
+      radial-gradient(ellipse 900px 520px at 50% 46%, rgba(70,200,90,.20), transparent 70%),
+      radial-gradient(ellipse 1200px 800px at 50% 50%, #0d151b 0%, #05080b 62%, #020406 100%);
+    font-family: "Segoe UI", system-ui, sans-serif;
+  }
+  /* perspective grid floor */
+  .grid { position:absolute; inset:0; opacity:.5;
+    background-image:
+      linear-gradient(rgba(120,255,140,.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120,255,140,.055) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 760px 520px at 50% 50%, #000 25%, transparent 78%);
+  }
+  .vig { position:absolute; inset:0; box-shadow: inset 0 0 220px 90px rgba(0,0,0,.92); }
+  .scan { position:absolute; inset:0; opacity:.16;
+    background: repeating-linear-gradient(180deg, rgba(255,255,255,.045) 0 1px, transparent 1px 3px); }
+
+  .island { position:absolute; left:50%; top:322px; transform:translateX(-50%); }
+  .glow { position:absolute; left:50%; top:420px; width:660px; height:210px;
+    transform:translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(120,255,110,.30), rgba(60,190,70,.10) 45%, transparent 72%);
+    filter: blur(14px); }
+
+  .wm { position:absolute; left:0; right:0; top:150px; text-align:center; }
+  .wm h1 {
+    font-size:118px; font-weight:900; letter-spacing:.045em; line-height:1;
+    background: linear-gradient(180deg,#e6ffb8 0%,#b6ff5c 34%,#5fd23c 72%,#2f9c26 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter: drop-shadow(0 0 26px rgba(120,255,90,.34)) drop-shadow(0 5px 0 rgba(0,0,0,.55));
+  }
+  .rule { width:520px; height:2px; margin:20px auto 0;
+    background:linear-gradient(90deg,transparent,rgba(182,255,92,.75),transparent); }
+  .tag { margin-top:14px; font-size:26px; font-weight:700; letter-spacing:.52em;
+    color:#9fc79a; text-transform:uppercase; text-indent:.52em; }
+
+  .ip { position:absolute; left:0; right:0; bottom:74px; text-align:center; }
+  .ip .pill {
+    display:inline-block; padding:15px 44px; border:2px solid rgba(150,235,110,.55);
+    border-radius:14px; background:rgba(28,58,26,.42);
+    box-shadow: 0 0 34px rgba(110,240,90,.20), inset 0 0 22px rgba(110,240,90,.10);
+    font-size:33px; font-weight:800; letter-spacing:.035em; color:#c8ff7a;
+    text-shadow:0 0 18px rgba(140,255,100,.5);
+  }
+  .feat { margin-top:19px; font-size:19px; letter-spacing:.16em; color:#7f9c7d; text-transform:uppercase; }
+  .feat b { color:#b6ff5c; font-weight:700; }
+  .float { position:absolute; opacity:.55; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="grid"></div>
+  <div class="glow"></div>
+
+  <!-- floating mini cubes -->
+  <svg class="float" style="left:118px; top:196px;" width="96" height="96" viewBox="0 0 100 100">
+    <g><polygon points="50,6 92,30 50,54 8,30" fill="#5ac944"/><polygon points="8,30 50,54 50,92 8,68" fill="#2f6b28"/><polygon points="92,30 50,54 50,92 92,68" fill="#234f1e"/></g>
+  </svg>
+  <svg class="float" style="right:104px; top:238px;" width="74" height="74" viewBox="0 0 100 100">
+    <g><polygon points="50,6 92,30 50,54 8,30" fill="#6ddb52"/><polygon points="8,30 50,54 50,92 8,68" fill="#356f2b"/><polygon points="92,30 50,54 50,92 92,68" fill="#26521f"/></g>
+  </svg>
+  <svg class="float" style="left:196px; top:556px; opacity:.4;" width="58" height="58" viewBox="0 0 100 100">
+    <g><polygon points="50,6 92,30 50,54 8,30" fill="#4fb83b"/><polygon points="8,30 50,54 50,92 8,68" fill="#2b6024"/><polygon points="92,30 50,54 50,92 92,68" fill="#1f4a1a"/></g>
+  </svg>
+  <svg class="float" style="right:168px; top:588px; opacity:.42;" width="64" height="64" viewBox="0 0 100 100">
+    <g><polygon points="50,6 92,30 50,54 8,30" fill="#57c243"/><polygon points="8,30 50,54 50,92 8,68" fill="#2e6827"/><polygon points="92,30 50,54 50,92 92,68" fill="#22501c"/></g>
+  </svg>
+
+  <!-- the chunk island -->
+  <svg class="island" width="620" height="360" viewBox="0 0 620 360">
+    <defs>
+      <linearGradient id="gtop" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8ff06a"/><stop offset="1" stop-color="#4fb63a"/>
+      </linearGradient>
+      <linearGradient id="gl" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#6b4a2b"/><stop offset=".42" stop-color="#4a3620"/><stop offset="1" stop-color="#23303a"/>
+      </linearGradient>
+      <linearGradient id="gr" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#553a20"/><stop offset=".42" stop-color="#382817"/><stop offset="1" stop-color="#18242c"/>
+      </linearGradient>
+    </defs>
+    <!-- top grass face -->
+    <polygon points="310,16 596,132 310,248 24,132" fill="url(#gtop)"/>
+    <!-- grass tile seams -->
+    <g stroke="rgba(255,255,255,.10)" stroke-width="1.5" fill="none">
+      <path d="M167,74 L453,190 M239,45 L525,161 M96,103 L382,219"/>
+      <path d="M453,74 L167,190 M381,45 L95,161 M525,103 L239,219"/>
+    </g>
+    <!-- left dirt/stone face -->
+    <polygon points="24,132 310,248 310,330 24,214" fill="url(#gl)"/>
+    <!-- right face -->
+    <polygon points="596,132 310,248 310,330 596,214" fill="url(#gr)"/>
+    <!-- exposed ores -->
+    <g opacity=".95">
+      <polygon points="96,196 128,209 128,231 96,218" fill="#59e0d8"/>
+      <polygon points="196,242 224,253 224,274 196,263" fill="#f2d24b"/>
+      <polygon points="470,232 500,220 500,241 470,253" fill="#e05c5c"/>
+      <polygon points="392,272 420,261 420,282 392,293" fill="#c9d6e2"/>
+    </g>
+    <!-- edge highlights -->
+    <path d="M24,132 L310,248 L596,132" fill="none" stroke="rgba(190,255,150,.55)" stroke-width="2.5"/>
+    <path d="M310,248 L310,330" stroke="rgba(0,0,0,.45)" stroke-width="2"/>
+    <!-- crumbling bottom bits -->
+    <polygon points="150,214 176,226 176,246 150,234" fill="#2a3640" opacity=".85"/>
+    <polygon points="428,262 452,251 452,272 428,283" fill="#26313a" opacity=".8"/>
+  </svg>
+
+  <div class="wm">
+    <h1>CHUNKLOCKED</h1>
+    <div class="rule"></div>
+    <div class="tag">Claim &nbsp;·&nbsp; Defend &nbsp;·&nbsp; Profit</div>
+  </div>
+
+  <div class="ip">
+    <div class="pill">play.chunklocked.com</div>
+    <div class="feat"><b>66</b> Relics &nbsp;•&nbsp; <b>1,354</b>-Item Economy &nbsp;•&nbsp; Bloodmoons &nbsp;•&nbsp; Auction House</div>
+  </div>
+
+  <div class="scan"></div>
+  <div class="vig"></div>
+</div>
+</body>
+</html>
