@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chunklocked — Claim. Defend. Profit.</title>
+<meta name="description" content="Chunklocked: the chunk-claim economy Minecraft server. Claim land, defend it, and get rich. Java + Bedrock. play.chunklocked.com">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(ellipse at center, #101418 0%, #060809 70%);
+    color: #e8f0e8; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    text-align: center;
+  }
+  .wrap { padding: 2rem; }
+  h1 {
+    font-size: clamp(2.5rem, 9vw, 5.5rem); font-weight: 900; letter-spacing: 0.08em;
+    background: linear-gradient(180deg, #b6ff5c, #3fae2a);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    text-shadow: 0 0 60px rgba(110, 255, 80, 0.25);
+  }
+  p.tag { margin-top: 0.75rem; font-size: clamp(1rem, 3vw, 1.4rem); color: #9fb59f; letter-spacing: 0.25em; text-transform: uppercase; }
+  .ip {
+    margin-top: 2.5rem; display: inline-block; cursor: pointer;
+    padding: 1rem 2.2rem; border: 1px solid #3fae2a; border-radius: 12px;
+    font-size: clamp(1.1rem, 4vw, 1.6rem); font-weight: 700; color: #b6ff5c;
+    background: rgba(63, 174, 42, 0.08); user-select: all;
+  }
+  p.soon { margin-top: 2rem; color: #6d806d; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>CHUNKLOCKED</h1>
+    <p class="tag">Claim &middot; Defend &middot; Profit</p>
+    <div class="ip" onclick="navigator.clipboard&&navigator.clipboard.writeText('play.chunklocked.com');this.textContent='COPIED!'">play.chunklocked.com</div>
+    <p class="soon">Full site launching&hellip; right about now. Refresh soon.</p>
+  </div>
+</body>
+</html>
